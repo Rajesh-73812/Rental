@@ -186,7 +186,7 @@ const CategoryList = () => {
                               className="h-7 w-16 cursor-pointer"
                               style={{ color: category.status === 1 ? "#045D78" : "#e9ecef" }}
                               icon={category.status === 1 ? faToggleOn : faToggleOff}
-                              onClick={() => handleToggleChange(category.id, category.status, "status")} // Pass 'status' field
+                              onClick={() => handleToggleChange(category.id, category.status, "status")} 
                             />
                           </td>
                           <td className="px-4 py-1">
