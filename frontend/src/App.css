@@ -303,6 +303,50 @@ color: #045D78 !important;
   border: none !important;
 }
 
+.css-1b9a91j-control:hover {
+  border-color: #045D78 !important;
+}
+.css-19bb58m {
+  height: 25px !important;
+}
+
+.css-ulfx5y {
+  height: 25px;
+}
+
+.css-hlgwow {
+  position: absolute !important;
+  right :190px !important;
+}
+
+.css-1xc3v61-indicatorContainer {
+  position: absolute;
+  right: 10px;
+}
+
+.css-1u9des2-indicatorSeparator {
+  position: absolute;
+  right: 50px;
+}
+
+/* .css-18kvxb8-control {
+   position: relative !important;
+}
+
+.css-5pixxi-singleValue{
+  position: absolute !important;
+  top:8px !important;
+  right: 150px !important;
+} */
+
+
+
+
+
+
+
+
+
 .mySelect option{
   background-color: #fff;
 }
@@ -310,3 +354,4 @@ color: #045D78 !important;
 .mySelect option:hover {
   background-color: #ccc; 
 }
+

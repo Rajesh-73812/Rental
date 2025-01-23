@@ -10,6 +10,9 @@ import Loader from '../common/Loader';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import api from '../utils/api';
+import Select from 'react-select';
+import SelectComponent from '../common/SelectComponent';
+import {statusoptions} from '../common/data';
 
 const CategoryAdd = () => {
   const navigate = useNavigate();
@@ -29,6 +32,9 @@ const CategoryAdd = () => {
       getCategory()
     }
   }, [id])
+
+
+   
 
   const getCategory = async () => {
     try {
@@ -157,11 +163,19 @@ const CategoryAdd = () => {
                     {/* category Status */}
                     <div className="flex flex-col">
                       <label htmlFor="category_status" className="text-sm font-medium text-start text-[12px] font-[Montserrat]" > Status </label>
-                      <select onChange={handleChange} value={formData.status} name="status" id="category_status" className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"  >
-                        <option value="" disabled selected>Select Status</option>
-                        <option value={1}>Publish</option>
-                        <option value={0}>Unpublish</option>
-                      </select>
+                      <SelectComponent
+                      
+                      name="status"
+                      value={formData.status}
+                      onChange={(selectedOption) => {
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          status: selectedOption.value,
+                        }));
+                      }}
+                      options={statusoptions}
+                    />
+
                     </div>
                   </div>
 
