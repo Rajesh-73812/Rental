@@ -302,6 +302,7 @@ color: #045D78 !important;
 .css-1wvake5{
   border: none !important;
 }
+
 .css-1b9a91j-control:hover {
   border-color: #045D78 !important;
 }
@@ -343,4 +344,14 @@ color: #045D78 !important;
 
 
 
+
+
+
+.mySelect option{
+  background-color: #fff;
+}
+
+.mySelect option:hover {
+  background-color: #ccc; 
+}
 

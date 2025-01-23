@@ -5,25 +5,33 @@ import { RiHome6Line } from "react-icons/ri";
 import { FaUser, FaLayerGroup } from "react-icons/fa";
 import { MdOutlineBluetooth } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
+import { MdOutlineLocationOn } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdHome } from "react-icons/io";
 import { PiUsersBold } from "react-icons/pi";
 import { FaRegFolder } from "react-icons/fa";
 import { TiUserOutline } from "react-icons/ti";
+import { FaRegUser } from "react-icons/fa6";
 import { LuSettings2 } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
+import { TbLogout2 } from "react-icons/tb";
 import { CiWallet } from "react-icons/ci";
+import { RiWallet3Line } from "react-icons/ri";
 import { TbSquareRoundedPercentage } from "react-icons/tb";
 import { CiImageOn } from "react-icons/ci";
+import { LuImage } from "react-icons/lu";
 import { CgCalendarDates } from "react-icons/cg";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { IoCheckboxOutline } from "react-icons/io5";
+import { GrCheckboxSelected } from "react-icons/gr";
 import { GoHome } from "react-icons/go";
+import { LiaHomeSolid } from "react-icons/lia";
 import { IoLayersOutline } from "react-icons/io5";
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
-import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
-import axios from "axios";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdManageAccounts } from "react-icons/md";import axios from "axios";
 import Loader from "../common/Loader";
 import api from "../utils/api"
 
@@ -134,7 +142,7 @@ const SidebarMenu = () => {
               </MenuItem>
 
               {/* country */}
-              <SubMenu label="Country" active={location.pathname === "/add-country" || location.pathname === "/country-list"} icon={<IoLocationOutline />}>
+              <SubMenu label="Country" active={location.pathname === "/add-country" || location.pathname === "/country-list"} icon={<MdOutlineLocationOn />}>
                 <MenuItem icon={<KeyboardArrowRightOutlinedIcon />} className="sub-menu-item"
 
 
@@ -212,7 +220,7 @@ const SidebarMenu = () => {
               </SubMenu>
 
               {/* payment gateway */}
-              <MenuItem icon={<CiWallet />}
+              <MenuItem icon={<RiWallet3Line />}
                 active={location.pathname === "/payment-list"}
                 onClick={() => {
                   navigate("/payment-list");
@@ -223,7 +231,7 @@ const SidebarMenu = () => {
               </MenuItem>
 
               {/* propoties */}
-              <SubMenu label="Properties" active={location.pathname === "/create-property" || location.pathname === "/property-list"} icon={<GoHome />}>
+              <SubMenu label="Properties" active={location.pathname === "/create-property" || location.pathname === "/property-list"} icon={<LiaHomeSolid />}>
                 <MenuItem icon={<KeyboardArrowRightOutlinedIcon />} className="sub-menu-item"
 
 
@@ -249,7 +257,7 @@ const SidebarMenu = () => {
               </SubMenu>
 
               {/* Extra Images */}
-              <SubMenu label="Extra Images" active={location.pathname === "/create-extra-image" || location.pathname === "/extra-image-list"} icon={<CiImageOn />}>
+              <SubMenu label="Extra Images" active={location.pathname === "/create-extra-image" || location.pathname === "/extra-image-list"} icon={<LuImage />}>
                 <MenuItem icon={<KeyboardArrowRightOutlinedIcon />} className="sub-menu-item"
 
 
@@ -276,7 +284,7 @@ const SidebarMenu = () => {
 
               {/* Facility */}
 
-              <SubMenu label="Facilities" active={location.pathname === "/create-facility" || location.pathname === "/facility-list"} icon={<ManageAccountsOutlinedIcon />}>
+              <SubMenu label="Facilities" active={location.pathname === "/create-facility" || location.pathname === "/facility-list"} icon={<MdManageAccounts />}>
 
                 <MenuItem icon={<KeyboardArrowRightOutlinedIcon />} className="sub-menu-item"
 
@@ -388,7 +396,7 @@ const SidebarMenu = () => {
 
               {/* faq */}
 
-              <SubMenu label="FAQ's " active={location.pathname === "/create-faq" || location.pathname === "/faq-list"} icon={<IoCheckboxOutline />}>
+              <SubMenu label="FAQ's " active={location.pathname === "/create-faq" || location.pathname === "/faq-list"} icon={<GrCheckboxSelected />}>
 
                 <MenuItem icon={<KeyboardArrowRightOutlinedIcon />} className="sub-menu-item"
                   // active={location.pathname === "/create-faq"}
@@ -423,7 +431,7 @@ const SidebarMenu = () => {
 
               {/* account */}
               <MenuItem
-                active={location.pathname === "/profile"} icon={<TiUserOutline />}
+                active={location.pathname === "/profile"} icon={<FaRegUser />}
                 onClick={() => {
                   navigate("/profile");
                   toggleSidebar1();
@@ -434,7 +442,7 @@ const SidebarMenu = () => {
 
               {/* admin */}
               <MenuItem
-                active={location.pathname === "/admin"} icon={<AdminPanelSettingsOutlinedIcon />}
+                active={location.pathname === "/admin"} icon={<MdAdminPanelSettings />}
                 onClick={() => {
                   navigate("/admin");
                   toggleSidebar1();
@@ -445,7 +453,7 @@ const SidebarMenu = () => {
 
               {/* settings */}
               <MenuItem
-                active={location.pathname === "/settings"} icon={<LuSettings2 />}
+                active={location.pathname === "/settings"} icon={<IoSettingsOutline />}
                 onClick={() => {
                   navigate("/settings");
                   toggleSidebar1();
@@ -467,7 +475,7 @@ const SidebarMenu = () => {
 
               {/* logout */}
               <MenuItem
-                active={location.pathname === "/"} icon={<CiLogout />}
+                active={location.pathname === "/"} icon={<TbLogout2 />}
                 onClick={logout}
               >
                 Logout

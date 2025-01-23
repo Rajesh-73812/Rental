@@ -62,7 +62,7 @@ const Settings = () => {
       'fullsize',
     ],
     extraButtons: [], 
-    removeButtons: ['about', 'video', 'audio','undo','redo',],
+    removeButtons: ['about', 'video', 'audio', 'undo', 'redo', 'speech'],
     showCharsCounter: false,
     showWordsCounter: false,
     toolbarSticky: true,
@@ -80,8 +80,10 @@ const Settings = () => {
     allowResizeX: true,
     allowResizeY: true,
     showPoweredByJodit: false, 
-    disablePlugins: ['poweredByJodit'], 
+    disablePlugins: ['poweredByJodit', 'speech'],
+    spellcheck: false, 
   };
+   
   
 
   useEffect(() => {
@@ -207,7 +209,7 @@ const Settings = () => {
                       <img width={100} src={formData.weblogo} alt="" />
                     </div>
                     
-                    <div className="grid gap-32  w-max sm:grid-cols-1 md:grid-cols-3  mt-6">
+                    <div className="grid gap-32  w-max sm:grid-cols-1 md:grid-cols-3  ">
                       {/* currency */}
                       <div className="flex flex-col">
                         <label htmlFor="currency" className="text-sm font-medium text-start text-[12px] font-[Montserrat]">
@@ -286,7 +288,7 @@ const Settings = () => {
                             className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                             onClick={()=>{togglePasswordVisibility("api_key")}}
                           >
-                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            {showApiKey ? <FaEyeSlash /> : <FaEye />}
                           </button>
                         </div>
                     </div>
@@ -298,7 +300,7 @@ const Settings = () => {
                           onChange={handleChange}
                           placeholder='**'
                         />
-                        <button type='button' onClick={()=>{togglePasswordVisibility("one_key")}} className='absolute inset-y-0 right-0 pr-3 flex  items-center text-sm leading-5'>{showPassword ? <FaEyeSlash /> : <FaEye />}</button>
+                        <button type='button' onClick={()=>{togglePasswordVisibility("one_key")}} className='absolute inset-y-0 right-0 pr-3 flex  items-center text-sm leading-5'>{showOneKey ? <FaEyeSlash /> : <FaEye />}</button>
                       </div>
                     </div>
                   

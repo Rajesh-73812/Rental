@@ -11,7 +11,6 @@ import { NotificationManager,NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import ArrowBackIosNewIcon  from '@mui/icons-material/ArrowBackIosNew';
 
-
 const Profile = () => {
   const navigate = useNavigate()
   const location = useLocation();
@@ -109,7 +108,7 @@ const Profile = () => {
           <div className="h-full px-6 max-w-5xl" style={{paddingTop:'24px'}}> 
             <div className="bg-white w-full rounded-xl border border-[#EAE5FF] py-4 px-6">
               <form className="mt-4" onSubmit={handleSubmit}>
-                <div className="grid gap-4 w-full sm:grid-cols-1 md:grid-cols-1  mt-6">
+                <div className="grid gap-4 w-full sm:grid-cols-1 md:grid-cols-2  mt-6">
                   {/*  name */}
                   <div className="flex flex-col">
                       <label  htmlFor="username"  className="text-sm font-medium text-start text-[12px] font-[Montserrat]"> Profile name </label>
@@ -119,7 +118,7 @@ const Profile = () => {
                       />
                     </div>
                 </div>
-                <div className="grid gap-4 w-full sm:grid-cols-1 md:grid-cols-1  mt-6">
+                <div className="grid gap-4 w-full sm:grid-cols-1 md:grid-cols-2  mt-6">
                   {/* password */}
                   <div className="flex flex-col relative">
                       <label  htmlFor="Password"  className="text-sm font-medium text-start text-[12px] font-[Montserrat]"> Password </label>
@@ -137,7 +136,7 @@ const Profile = () => {
                       </span>
                     </div>
                 </div>
-
+                        
                 {/* Action Buttons */}
                 <div className="flex justify-start mt-6 gap-3">
                   <button  type="submit" className=" py-2 bg-[#045D78] text-white rounded-lg  w-[120px] h-10 font-[Poppins] font-medium" style={{ borderRadius: "8px", }} >Update Profile </button>

@@ -8,14 +8,10 @@ import Select from 'react-select';
 import ArrowBackIosNewIcon  from '@mui/icons-material/ArrowBackIosNew';
 import api from "../utils/api";
 import { RxCrossCircled } from "react-icons/rx";
-
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
-
 import Loader from "../common/Loader";
 import { useLoading } from "../Context/LoadingContext";
-
-
 
 const PropertiesAdd = () => {
   const [countries, setCountries] = useState([]);
@@ -25,8 +21,10 @@ const PropertiesAdd = () => {
   const location = useLocation()
   const id = location.state ? location.state.id : null;
   const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentRule, setCurrentRule] = useState('');
+  const { isLoading, setIsLoading } = useLoading();
   const [formData, setFormData] = useState({
     id: 0 || null,
     title: '',
@@ -151,15 +149,25 @@ const PropertiesAdd = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Fields that require positive integers
+    if (['adults', 'children', 'infants', 'pets','price'].includes(name)) {
+        const positiveNumberRegex = /^[0-9]*$/; // Only positive integers allowed
+
+        // Validate input
+        if (!positiveNumberRegex.test(value)) {
+            // alert("Please enter a positive number.");
+            return; // Stop further execution if invalid input
+        }
+    }
+
+    // Update the form data
     setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-      id: prevData.id,
+        ...prevData,
+        [name]: value,
+        id: prevData.id,
     }));
-  };
-
-  const { isLoading, setIsLoading } = useLoading();
-
+};
   
 
   useEffect(() => {
@@ -186,7 +194,7 @@ const PropertiesAdd = () => {
     if (!formData.image) {
       NotificationManager.removeAll();
       NotificationManager.error('Please upload an image', 'Error');
-      setError('Please upload an image');
+      setError2('Please upload an image');
       return;
     }
   
@@ -195,9 +203,7 @@ const PropertiesAdd = () => {
       ...formData,
       rules: JSON.stringify(formData.rules),
     };
-  
     const successMessage = id ? 'Property Updated Successfully!' : 'Property Added Successfully!';
-  
     try {
       const response = await api.post('/properties/upsert', formDataToSubmit, { withCredentials: true });
       console.log(response)
@@ -227,7 +233,6 @@ const PropertiesAdd = () => {
       }
     }
   };
-  
 
   return (
     <div>
@@ -305,7 +310,7 @@ const PropertiesAdd = () => {
                       <ImageUploader
                         onUploadSuccess={handleImageUploadSuccess}
                       />
-                      {error && (<p className="text-red-500 text-sm mt-2">{error}</p>)}
+                      {error2 && (<p className="text-red-500 text-sm mt-2">{error2}</p>)}
                     </div>
 
                     {/* property panorama */}
@@ -334,6 +339,7 @@ const PropertiesAdd = () => {
                         value={formData.price}
                         name="price"
                         type="number"
+                        min={0}
                         required
                         className="border rounded-lg p-3 mt-1 w-full h-14"
                         style={{
@@ -359,7 +365,8 @@ const PropertiesAdd = () => {
                       <input
                         id="adults"
                         name="adults"
-                        type="number"
+                        type="number" 
+                        min={0}
                         required
                         value={formData.adults}
                         onChange={handleChange}
@@ -370,6 +377,7 @@ const PropertiesAdd = () => {
                         }}
                         placeholder="Enter Adults"
                       />
+                      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
                     </div>
                     {/* children */}
                     <div className="flex flex-col">
@@ -380,7 +388,8 @@ const PropertiesAdd = () => {
                         {" "}
                         Children{" "}
                       </label>
-                      <input id="children" name="children" type="number" required value={formData.children} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Children" />
+                      <input id="children" name="children" type="number" min={0} required value={formData.children} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Children" />
+                      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
                     </div>
                     {/* infants */}
                     <div className="flex flex-col">
@@ -391,7 +400,8 @@ const PropertiesAdd = () => {
                         {" "}
                         Infants{" "}
                       </label>
-                      <input id="infants" name="infants" type="number" required value={formData.infants} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Infants" />
+                      <input id="infants" name="infants" type="number" min={0} required value={formData.infants} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Infants" />
+                      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
                     </div>
                     {/* pets */}
                     <div className="flex flex-col">
@@ -402,7 +412,8 @@ const PropertiesAdd = () => {
                         {" "}
                         Pets{" "}
                       </label>
-                      <input id="pets" name="pets" type="number" required value={formData.pets} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Pets" />
+                      <input id="pets" name="pets" type="number" min={0} required value={formData.pets} onChange={handleChange} className="border rounded-lg p-3 mt-1 w-full h-14" style={{ borderRadius: "8px", border: "1px solid #EAEAFF", }} placeholder="Enter Pets" />
+                      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
                     </div>
                   </div>
 
