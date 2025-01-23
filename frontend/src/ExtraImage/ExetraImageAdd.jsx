@@ -7,6 +7,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import ArrowBackIosNewIcon  from '@mui/icons-material/ArrowBackIosNew';
 import api from '../utils/api';
+import { statusoptions } from '../common/data';
+import SelectComponent from '../common/SelectComponent';
 
 const ExtraImageAdd = () => {
     const navigate = useNavigate();
@@ -174,11 +176,18 @@ const ExtraImageAdd = () => {
                                         {/* Property Image Status */}
                                         <div className="flex flex-col">
                                             <label htmlFor="status" className="text-sm font-medium text-start text-[12px] font-[Montserrat]">Property Image Status</label>
-                                            <select name="status" id="status" value={formData.status} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm" onChange={handleChange} required>
-                                                <option value="" disabled selected>Select Status</option>
-                                                <option value={1}>Publish</option>
-                                                <option value={0}>Unpublish</option>
-                                            </select>
+                                            <SelectComponent
+                      
+                      name="status"
+                      value={formData.status}
+                      onChange={(selectedOption) => {
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          status: selectedOption.value,
+                        }));
+                      }}
+                      options={statusoptions}
+                    />
                                         </div>
                                     </div>
                                     {/* Action Buttons */}

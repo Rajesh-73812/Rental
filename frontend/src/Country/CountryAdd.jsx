@@ -12,6 +12,8 @@ import 'react-notifications/lib/notifications.css';
 import api from "../utils/api";
 import CountryCodes from "../utils/CountryCodes";
 import ArrowBackIosNewIcon  from '@mui/icons-material/ArrowBackIosNew';
+import { statusoptions } from "../common/data";
+import SelectComponent from "../common/SelectComponent";
 
 const CountryAdd = () => {
   const navigate = useNavigate();
@@ -201,17 +203,20 @@ const CountryAdd = () => {
                       >
                         Status
                       </label>
-                      <select
-                        name="status"
-                        id="status"
-                        value={formData.status}
-                        onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#045D78] focus:border-[#045D78] text-sm custom-select"
-                      >
-                        <option value="" disabled >Select Status</option>
-                        <option value={1}>Publish</option>
-                        <option value={0}>Unpublish</option>
-                      </select>
+                      
+
+                      <SelectComponent
+                      
+                      name="status"
+                      value={formData.status}
+                      onChange={(selectedOption) => {
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          status: selectedOption.value,
+                        }));
+                      }}
+                      options={statusoptions}
+                    />
                     </div>
                   </div>
 
